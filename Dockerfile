@@ -1,0 +1,1 @@
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/sdk:7.0 as base
