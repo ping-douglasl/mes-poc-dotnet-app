@@ -1,4 +1,4 @@
-using API.Context;
+using API.Contexts;
 using API.Migrations;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
@@ -17,11 +17,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddFluentMigratorCore();
-builder.Services.ConfigureRunner(rb => rb
-    .AddMySql5()
-    .WithGlobalConnectionString(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING"))
-    .ScanIn(typeof(InitialMigration).Assembly).For.Migrations()
-);
+// builder.Services.ConfigureRunner(rb => rb
+//     .AddMySql5()
+//     .WithGlobalConnectionString(MySqlContext.GetGlobalConnection())
+//     .ScanIn(typeof(InitialMigration).Assembly).For.Migrations()
+// );
 builder.Services.AddLogging(lb => lb.AddFluentMigratorConsole());
 
 var app = builder.Build();
@@ -35,14 +35,11 @@ if (app.Environment.IsDevelopment())
 
 using (var scope = app.Services.CreateScope())
 {
-    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
-    runner.MigrateUp();
-}
-
-using (var scope = app.Services.CreateScope())
-{
     var context = scope.ServiceProvider.GetRequiredService<MySqlContext>();
     await context.Init();
+
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
 }
 
 app.UseAuthorization();
