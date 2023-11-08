@@ -29,6 +29,8 @@ using (var scope = app.Services.CreateScope())
     await context.Init();
 }
 
+app.UseHsts();
+
 app.UseAuthorization();
 
 app.MapControllers();
