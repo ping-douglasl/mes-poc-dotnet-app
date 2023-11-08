@@ -1,6 +1,7 @@
-using Dapper;
-using MySql.Data.MySqlClient;
+
 using System.Data;
+using Dapper;
+using MySqlConnector;
 
 namespace API.Contexts
 {
@@ -32,7 +33,7 @@ namespace API.Contexts
             Console.WriteLine(sql);
             var connection = GetConnection();
             await connection.ExecuteAsync(sql);
-        }
+        }   
 
         public IDbConnection GetConnection()
         {
