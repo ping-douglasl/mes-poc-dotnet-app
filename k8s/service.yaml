@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mes-poc-dotnet-app
+spec:
+  selector:
+    app: mes-poc-dotnet-app
+  ports:
+  - name: mes-poc-dotnet-app-service
+    port: 5000
+    targetPort: 80

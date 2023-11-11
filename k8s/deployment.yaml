@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mes-poc-dotnet-app
+spec:
+  selector:
+    matchLabels:
+      app: mes-poc-dotnet-app
+  template:
+    metadata:
+      labels:
+        app: mes-poc-dotnet-app
+    spec:
+      containers:
+      - name: mes-poc-dotnet-app
+        image: mes-poc-dotnet-app
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: environment-variables
