@@ -21,11 +21,11 @@ namespace api.Controllers
                 //
 
                 ConnectionFactory factory = new()
-                {                    
-                    UserName = "user goes here",
-                    Password = "password goes here",
-                    VirtualHost = "derp",
-                    HostName = "my-rabbit"
+                {          
+                    UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER"),
+                    Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD"),
+                    VirtualHost = Environment.GetEnvironmentVariable("RABBITMQ_VHOST"),
+                    HostName = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD")
                 };
 
                 IConnection conn = factory.CreateConnection();
