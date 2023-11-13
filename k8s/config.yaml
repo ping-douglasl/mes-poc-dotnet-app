@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mes-poc-dotnet-app
-data:
-  mysql: value

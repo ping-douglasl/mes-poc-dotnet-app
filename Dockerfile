@@ -19,4 +19,4 @@ RUN dotnet publish ./src/mes-poc-dotnet-app.csproj -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
 WORKDIR /app
 COPY --from=publisher /app/out ./
-ENTRYPOINT ["dotnet", "api.dll"]
+ENTRYPOINT ["dotnet", "mes-poc-dotnet-app.dll"]
