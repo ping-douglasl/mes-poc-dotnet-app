@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: mes-dotnet-app
+spec:
+  parentRefs:
+  - name: mes-gateway
+    sectionName: http
+  hostnames:
+  - mes.karsten.com
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /weatherforecast
+      method: GET
+    backendRefs:
+    - name: mes-dotnet-app-svc
+      port: 80

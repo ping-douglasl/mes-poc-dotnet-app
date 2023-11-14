@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mes-poc-dotnet-app
+  name: mes-dotnet-app
 spec:
   selector:
     matchLabels:
-      app: mes-poc-dotnet-app
+      app: mes-dotnet-app
   template:
     metadata:
       labels:
-        app: mes-poc-dotnet-app
+        app: mes-dotnet-app
+        system: mes-system
     spec:
       containers:
-      - name: mes-poc-dotnet-app
+      - name: mes-dotnet-app
         image: mes-poc-dotnet-app
         imagePullPolicy: IfNotPresent
         resources:
