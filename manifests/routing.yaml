@@ -4,14 +4,14 @@ metadata:
   name: mes-dotnet-app
 spec:
   parentRefs:
-  - name: mes-gateway
-    sectionName: http
+    - name: mes-gateway
+      sectionName: https
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /weatherforecast
-      method: GET
-    backendRefs:
-    - name: mes-dotnet-app-svc
-      port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /weatherforecast
+          method: GET
+      backendRefs:
+        - name: mes-dotnet-app-svc
+          port: 80
