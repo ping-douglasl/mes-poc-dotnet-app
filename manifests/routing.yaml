@@ -6,8 +6,6 @@ spec:
   parentRefs:
   - name: mes-gateway
     sectionName: http
-  hostnames:
-  - mes.karsten.com
   rules:
   - matches:
     - path:
